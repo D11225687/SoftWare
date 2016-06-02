@@ -1,13 +1,4 @@
-
-
-import javax.swing.*;
-import javax.swing.event.CaretListener;
-
-import java.awt.*;
-import java.awt.event.*; //引用處理事件的event套件
-import java.io.File;
 import java.util.Scanner;
-
 class consumption{
 	private  int adult,child,adultPrice,childPrice,allPrice;
 	int []AdCh = new int[2];
@@ -68,123 +59,15 @@ class consumption{
 }
 
 public class SoftWarehw5  {
-	JFrame frame= new JFrame("家庭日本料理餐廳－價錢計算器");
-	Container cp = frame.getContentPane(); //取得內容面版
-	JLabel label[] = new JLabel[5];
-	JButton button = new JButton("開始計算");
-	JTextField []textField= new JTextField[2];
-	JRadioButton []radioButton = new JRadioButton[2];
-	ButtonGroup bG = new ButtonGroup();
-	int adultnumber=0,childnumber=0;
-	FocusListener fl=new FocusAdapter (){
-		public void focusLost(FocusEvent e) {
-			System.out.println(((JTextField)e.getSource()).getText());
-			if(((JTextField)e.getSource()).getText().matches("[1-9][0-9]*") ){//判斷是否純數字
-				adultnumber=Integer.parseInt(((JTextField)e.getSource()).getText());
-			}
-		}
-	};
-	FocusListener fl1=new FocusAdapter (){
-		public void focusLost(FocusEvent e) {
-			System.out.println(((JTextField)e.getSource()).getText());
-			if(((JTextField)e.getSource()).getText().matches("[1-9][0-9]*") ){//判斷是否純數字
-				childnumber=Integer.parseInt(((JTextField)e.getSource()).getText());
-			}
-		}
-	};
-	ActionListener al=new ActionListener (){
-		public void actionPerformed(ActionEvent e) {
-			int flag=0;
-			if(radioButton[0].isSelected()==true){
-				flag=0;
-			}
-			else{
-				flag=1;
-			}
-			consumption c= new consumption(adultnumber, childnumber,flag );
-			label[4].setText("總價錢："+Integer.toString(c.getallprice()));
-		}
-	};
-	
-	SoftWarehw5(){
-		
-		cp.setLayout(null);
-		
-		label[0]=new JLabel("大人");
-		label[0].setHorizontalAlignment(SwingConstants.CENTER);
-		label[0].setBounds(51, 27, 46, 15);
-		label[1]=new JLabel("小孩");
-		label[1].setHorizontalAlignment(SwingConstants.CENTER);
-		label[1].setBounds(185, 27, 46, 15);
-		label[2]=new JLabel("白天");
-		label[2].setHorizontalAlignment(SwingConstants.RIGHT);
-		label[2].setBounds(185, 92, 51, 15);
-		label[3]=new JLabel("晚上");
-		label[3].setHorizontalAlignment(SwingConstants.RIGHT);
-		label[3].setBounds(185, 121, 51, 15);
-		label[4]=new JLabel("總價錢：");
-		label[4].setBounds(10, 121, 200, 15);
-		button.setBounds(95, 80, 87, 23);
-		textField[0]= new JTextField();
-		textField[0].setBounds(26, 52, 96, 21);
-		textField[1]= new JTextField();
-		textField[1].setBounds(160, 52, 96, 21);
-		radioButton[0]=new JRadioButton();
-		radioButton[0].setSelected(true);
-		radioButton[0].setBounds(235, 86, 21, 23);
-		radioButton[1] = new JRadioButton();
-		radioButton[1].setBounds(235, 117, 21, 23);
-		
-		for (int i=0;i<5;i++){
-			cp.add(label[i]);
-		}
-		cp.add(button);
-		
-		
-		
-		
-		for (int i=0;i<2;i++){
-			cp.add(textField[i]);
-			bG.add(radioButton[i]);
-			cp.add(radioButton[i]);
-		}
-		
-		
-//		button.addActionListener(new ActionListener(){
-//
-//			//回應按鈕按下事件的方法
-//			public void actionPerformed(ActionEvent e){
-//
-//			
-//			}		
-//		});
-		
-		button.addActionListener(al);
-		radioButton[0].addActionListener(al);
-		radioButton[1].addActionListener(al);
-		textField[0].addFocusListener(fl);
-		textField[1].addFocusListener(fl1);
-		//設定視窗預設的關閉動作、視窗大小, 並顯示視窗
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(320, 200);
-		frame.setVisible(true);
-		Dimension dim = frame.getToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getWidth()/2, dim.height/2-frame.getHeight()/2);
-		
-		
-	}
-	
-	
+
 	public static void main(String args[]) {
-		new SoftWarehw5(); //宣告視窗框架物件
-		
-//		Scanner scanner = new Scanner(System.in);
-//		System.out.print("請輸入大人人數：");
-//		int num1 = scanner.nextInt();
-//		System.out.print("請輸入小孩人數：");
-//		int num2 = scanner.nextInt();
-//		System.out.print("晚上輸入0則白天1：");
-//		int num3 = scanner.nextInt();
-//		consumption c= new consumption(num1, num2, num3);
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("請輸入大人人數：");
+		int num1 = scanner.nextInt();
+		System.out.print("請輸入小孩人數：");
+		int num2 = scanner.nextInt();
+		System.out.print("晚上輸入0則白天1：");
+		int num3 = scanner.nextInt();
+		consumption c= new consumption(num1, num2, num3);
 	}
 }
